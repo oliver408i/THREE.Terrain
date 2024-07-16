@@ -76,6 +76,47 @@ Fault lines, Feature picking, Particle deposition, Perlin and Simplex noise,
 Value noise, Weierstrass functions, Worley noise (aka Cell or Voronoi noise),
 Brownian motion, arbitrary curves, and various combinations of those.
 
+### ES6 Module Usage
+
+When using the module version of THREE.Terrain, there are a few differences compared to the example script above:
+1. Use `import { Terrain } from 'pathToYour/ThreeTerrain.mjs';` instead of including the script as a <script> tag. *The Terrain class is also the default export if you wish to use it that way*
+2. `Terrain` is now a ES6 class, meaning that you must use `new Terrain({`. All options remain the same.
+3. Since `Terrain` is a class, you must use `terrain.getScene()` to get the actual terrain scene to add to your main scene. The terrain mesh would be `terrain.getScene().children[0]`.
+4. All other methods and values of the `THREE.Terrain` class that are accessible are now static methods/values of the `Terrain` class. For example, use `Terrain.Linear` for easing, and `Terrain.Fault` as a heightmap. Note that `Terrain.ScatterMeshes` is still a method and still returns a scene. It is not its own class.
+
+See an example below:
+```js
+const terrain = new Terrain({
+    easing: Terrain.Linear,
+    frequency: 3,
+    heightmap: Terrain.Fault,
+    material: new THREE.MeshLambertMaterial({color: "#9A9A9A"}),
+    maxHeight: -10,
+    minHeight: -200,
+    steps: 1,
+    xSegments: xS,
+    xSize: size,
+    ySegments: yS,
+    ySize: size,
+});
+terrainMesh = terrain.getScene().children[0];
+terrainScene = terrain.getScene();
+
+scene.add(global.terrainScene); // Scene is your main scene
+
+var geo = global.terrainScene.children[0].geometry;
+
+// Add randomly distributed foliage
+const decoScene = Terrain.ScatterMeshes(geo, {
+    mesh: new THREE.Mesh(new THREE.CylinderGeometry(2, 2, 12, 6), new THREE.MeshLambertMaterial({color: "#E8E8E8"})),
+    w: xS,
+    h: yS,
+    spread: 0.005,
+    randomness: Math.random,
+});
+terrainScene.add(decoScene);
+```
+
 ### Exporting and Importing
 
 Export a terrain to a heightmap image:
