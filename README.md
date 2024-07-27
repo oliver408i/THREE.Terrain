@@ -1,9 +1,10 @@
-[![npm version](https://badge.fury.io/js/three.terrain.js.svg)](https://www.npmjs.com/package/three.terrain.js)
-
 `THREE.Terrain` is a **procedural terrain generation engine** for use with the
 [Three.js](https://github.com/mrdoob/three.js) 3D graphics library for the web.
 
-#### [Try the demo](https://icecreamyou.github.io/THREE.Terrain/)!
+This is a fork of the orignal [THREE.Terrain repo](https://github.com/IceCreamYou/THREE.Terrain) updated for newer versions of THREE.js and ES6 modules. For the latest versions of THREE.js, you MUST use the module version of this library. See the section on how to use the module version of the library.
+
+[Original Demo](https://icecreamyou.github.io/THREE.Terrain/)   
+[My game using THREE.Terrain](https://github.com/oliver408i/missilesim) using the module version of the library. See the misc settings for different terrain modes.
 
 ## Usage
 
@@ -77,7 +78,7 @@ Value noise, Weierstrass functions, Worley noise (aka Cell or Voronoi noise),
 Brownian motion, arbitrary curves, and various combinations of those.
 
 ### ES6 Module Usage
-
+Make sure to get the correct build! That is the `.mjs` inside of the `build` folder!   
 When using the module version of THREE.Terrain, there are a few differences compared to the example script above:
 1. Use `import { Terrain } from 'pathToYour/ThreeTerrain.mjs';` instead of including the script as a <script> tag. *The Terrain class is also the default export if you wish to use it that way*
 2. `Terrain` is now a ES6 class, meaning that you must use `new Terrain({`. All options remain the same.
