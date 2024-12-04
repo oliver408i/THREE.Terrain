@@ -3,6 +3,8 @@
 
 This is a fork of the orignal [THREE.Terrain repo](https://github.com/IceCreamYou/THREE.Terrain) updated for newer versions of THREE.js and ES6 modules. For the latest versions of THREE.js, you MUST use the module version of this library. See the section on how to use the module version of the library.
 
+*SEE the ES6 Module Usage section for how to use this fork!*
+
 [Original Demo](https://icecreamyou.github.io/THREE.Terrain/)   
 [My game using THREE.Terrain](https://github.com/oliver408i/missilesim) using the module version of the library. See the misc settings for different terrain modes.
 
@@ -100,12 +102,12 @@ const terrain = new Terrain({
     ySegments: yS,
     ySize: size,
 });
-terrainMesh = terrain.getScene().children[0];
-terrainScene = terrain.getScene();
+const terrainMesh = terrain.getScene().children[0];
+const terrainScene = terrain.getScene();
 
-scene.add(global.terrainScene); // Scene is your main scene
+scene.add(terrainScene); // Scene is your main scene
 
-var geo = global.terrainScene.children[0].geometry;
+var geo = terrainScene.children[0].geometry;
 
 // Add randomly distributed foliage
 const decoScene = Terrain.ScatterMeshes(geo, {
